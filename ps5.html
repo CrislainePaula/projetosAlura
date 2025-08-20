@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Projeto p5.js Interface</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+<script>
+let corFundo;
+let botaoX, botaoY, botaoL, botaoA;
+
+function setup() {
+  createCanvas(600, 400);
+  corFundo = color(100, 150, 255);
+  
+  // posição e tamanho do botão
+  botaoX = width / 2 - 50;
+  botaoY = height / 2 + 50;
+  botaoL = 100;
+  botaoA = 40;
+}
+
+function draw() {
+  background(corFundo);
+
+  // título
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(28);
+  text("Interface com p5.js", width / 2, height / 3);
+
+  // botão
+  if (mouseSobreBotao()) {
+    fill(200, 100, 100);
+  } else {
+    fill(255, 150, 150);
+  }
+  rect(botaoX, botaoY, botaoL, botaoA, 10);
+
+  fill(0);
+  textSize(16);
+  text("Mudar Cor", botaoX + botaoL/2, botaoY + botaoA/2);
+}
+
+// verificação de clique
+function mousePressed() {
+  if (mouseSobreBotao()) {
+    corFundo = color(random(255), random(255), random(255));
+  }
+}
+
+function mouseSobreBotao() {
+  return (mouseX > botaoX && mouseX < botaoX + botaoL &&
+          mouseY > botaoY && mouseY < botaoY + botaoA);
+}
+</script>
+</body>
+</html>
